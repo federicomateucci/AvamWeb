@@ -15,6 +15,11 @@
               <a class="nav-link" href="#">Lista de pedidos</a>
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/loadArchive">
+              <a class="nav-link" href="#">Carga de Archivo</a>
+            </router-link>
+          </li>
         </ul>
       </div>
       <div v-if="isAdmin === false">

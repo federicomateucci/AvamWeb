@@ -29,7 +29,7 @@
       </table>
     </div>
   </section>
-  <div v-if="!isAdmin" class="alert alert-warning">
+  <div v-if="!this.isAdmin" class="alert alert-warning">
         No tenes permisos para acceder a este recurso
   </div>
 </template>

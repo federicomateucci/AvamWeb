@@ -9,6 +9,7 @@ import Pedidos from '../components/Pedidos.vue';
 import PedidosCustomer from '../components/PedidosCustomer.vue';
 import PedidoDetails from '../components/PedidoDetails.vue';
 import PedidoDetailsCustomer from '../components/PedidoDetailsCustomer.vue';
+import loadArchive from '../components/loadArchive.vue'
 
 const routes = [
   { path: '/', name: 'Login', component: Login },
@@ -28,6 +29,9 @@ const routes = [
   {
     path: '/detallespedido/:pedidoid', name: 'PedidoDetailsCustomer', component: PedidoDetailsCustomer, props: true,
   },
+  {
+    path: '/loadArchive', name: 'loadArchive', component: loadArchive
+  }
 ];
 
 const router = createRouter({
