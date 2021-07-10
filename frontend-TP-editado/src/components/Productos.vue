@@ -134,7 +134,7 @@ export default {
               Authorization: `Bearer ${localStorage.jwt}`,
             },
           });
-          await this.getDatosForm();
+          // await this.getDatosForm();
           // console.log(res.data.mensaje);
           this.isRequestLoading = false;
         } catch (err) {

@@ -9,6 +9,9 @@
       </label>
         <button v-on:click="submitForm()">Upload</button>
     </div>
+    <div v-if="this.showMsg === true" class="jumbotron">
+     <h3>EL ARCHIVOS SE CARGO CORRECTAMENTE , LA BASE DE DATOS FUE ACTUALIZADA</h3>
+    </div>
   </div>
 
     
@@ -21,7 +24,7 @@
 <script>
 
 import jwt from "jsonwebtoken";
- const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
+ 
   export default  {
     name: 'srccomponentsloadArchive',
     props: [],
@@ -32,38 +35,54 @@ import jwt from "jsonwebtoken";
     data () {
       return {
          isAdmin: false,
-         file :''
+         file :'',
+         finishMsg:'',
+         showMsg : false
+         
       }
     },
      computed: {
 
     },
     methods: {
+      changemsg(data){
+         this.showMsg = true
+         this.finishMsg = data.data.message
+      },
       chequearAdmin() {
       const tokenDecoded = jwt.decode(localStorage.jwt);
       if (tokenDecoded) {
         const { rol } = tokenDecoded;
         this.isAdmin = rol == "admin";
         console.log(this.isAdmin);
+        
       }
     },
-    submitForm(){
+    
+    async submitForm(){
+           
             let formData = new FormData();
             formData.append('sample', this.file);
-  
-            this.axios.post('http://localhost:3000/products/upload-avatar',
+            try {
+
+            let resp = await this.axios.post('http://localhost:3000/products/upload-avatar',
                 formData,
                 {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
               }
-            ).then(function(data){
-              console.log(data.data);
-            })
-            .catch(function(){
-              console.log('FAILURE!!');
-            });
+            )
+            console.log(resp);
+            this.changemsg(resp);
+            return resp
+            } catch (error) {
+              console.log(error);
+              
+            }
+         
+
+            
       },
   
       onChangeFileUpload(){
