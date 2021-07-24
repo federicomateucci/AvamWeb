@@ -3,7 +3,7 @@
   <section class="src-components-load-archive">
     <div class="container">
     <div class="large-12 medium-12 small-12 cell">
-      <h1>Vue JS Axios - Image Upload using PHP API - ItSolutionStuff.com</h1>
+      <h1>Cargue el Archivo AVAMCAR.XLS ANTERIORMENTE EXPORTADO DE TAPICE</h1>
       <label>File
         <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
       </label>

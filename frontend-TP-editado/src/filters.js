@@ -3,6 +3,7 @@ export default {
     agregarSignoPesos(value) {
       return `$${value}`;
     },
+ 
   },
 
   computed: {

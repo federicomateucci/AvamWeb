@@ -10,7 +10,7 @@ export default createStore({
     return {
       productos: [],
       pedidos: [],
-      clientProducts: []
+      clientProducts: [],
     };
   },
   actions: {

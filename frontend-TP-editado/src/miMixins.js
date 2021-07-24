@@ -4,7 +4,7 @@ export default {
       this.$router.push({
         name: 'Productos',
       });
-    }
+    },
   },
   computed: {
   

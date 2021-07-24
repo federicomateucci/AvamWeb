@@ -26,14 +26,14 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <router-link to="/productosCustomer">
-              <a class="nav-link" href="#">Realizar pedido</a>
+              <a class="nav-link" href="#">Home</a>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link to="/pedidoscustomer">
               <a class="nav-link" href="#">Mis pedidos</a>
             </router-link>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

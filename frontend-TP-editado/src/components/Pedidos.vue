@@ -7,7 +7,7 @@
 
       <table v-if="pedidos.length > 0" class="table table-striped mt-3">
         <thead>
-          <tr class="table-info">
+          <tr class="table-info" id="tableNames">
             <th>ID Pedido</th>
             <th>ID Cliente</th>
             <th>Productos</th>
@@ -28,10 +28,10 @@
         </tbody>
       </table>
     </div>
-  </section>
   <div v-if="!this.isAdmin" class="alert alert-warning">
         No tenes permisos para acceder a este recurso
   </div>
+  </section>
 </template>
 
 <script>
@@ -44,7 +44,8 @@ export default {
   props: [],
   data() {
     return {
-      isAdmin : false
+      isAdmin : false,
+     
     };
   },
   computed: {
@@ -53,7 +54,8 @@ export default {
     },
     totalPedidos() {
       return this.pedidos.length;
-    }
+    },
+    
   },
   mounted() {
     this.getDatosForm();

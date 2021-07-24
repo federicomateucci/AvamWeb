@@ -3,7 +3,7 @@
     <div class="jumbotron">
       <div class="container mainDiv" align="center">
         <h2>Bienvenido!</h2>
-        <p>Ingresá con tu cuenta para empezar a realizar pedidos.</p>
+        <p>Ingresá con tu cuenta para visualizar la lista de precios de AVAMCAR</p>
         <div class="col-md-8">
           <div v-if="errorLogueo" class="alert alert-warning">
             Usuario Incorrecto, intente nuevamente
@@ -98,14 +98,14 @@ export default {
     async sendDatosFormAxios(datos) {
       try {
         const res = await this.axios.post(this.url, datos, { "content-type": "application/json" });
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.jwt = res.data.token;
-        console.log("jwt::", localStorage);
+        // console.log("jwt::", localStorage);
         this.errorLogueo = false;
         this.esAdmin();
         this.estalogueado = true;
         if (this.isAdmin) {
-          this.$router.push("/pedidos");
+          this.$router.push("/productos");
         } else {
           this.$router.push("/productoscustomer");
         }

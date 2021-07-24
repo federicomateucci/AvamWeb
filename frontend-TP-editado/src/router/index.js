@@ -6,7 +6,7 @@ import ModificarProducto from '../components/ModificarProducto.vue';
 import Productos from '../components/Productos.vue';
 import ProductosCustomer from '../components/ProductosCustomer.vue';
 import Pedidos from '../components/Pedidos.vue';
-import PedidosCustomer from '../components/PedidosCustomer.vue';
+// import PedidosCustomer from '../components/PedidosCustomer.vue';
 import PedidoDetails from '../components/PedidoDetails.vue';
 import PedidoDetailsCustomer from '../components/PedidoDetailsCustomer.vue';
 import loadArchive from '../components/loadArchive.vue'
@@ -21,7 +21,7 @@ const routes = [
   },
   { path: '/productosCustomer/', name: 'ProductosCustomer', component: ProductosCustomer },
   { path: '/pedidos/', name: 'Pedidos', component: Pedidos },
-  { path: '/pedidoscustomer/', name: 'PedidosCustomer', component: PedidosCustomer },
+  // { path: '/pedidoscustomer/', name: 'PedidosCustomer', component: PedidosCustomer },
   { path: '/catchAll(.*)', name: 'NotFound', component: Login },
   {
     path: '/detallespedido/:pedidoid', name: 'PedidoDetails', component: PedidoDetails, props: true,
