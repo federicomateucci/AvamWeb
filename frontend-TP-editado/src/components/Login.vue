@@ -29,7 +29,7 @@
             <!--  CAMPO DESCRIPCION  -->
             <!-- ------------v-model.number="v.f.password.$model" -->
             <div class="form-group mt-5">
-              <label for="password"><b>Contraseña</b></label>
+              <label for="password" class="pass"><b>Contraseña</b></label>
               <input id="password" v-model="v.f.password.$model" type="password" class="form-control" placeholder="Ingrese password..." />
               <!-- CARTELES DE VALIDACIÓN -->
               <div v-if="v.f.password.$error && v.f.password.$dirty" class="alert alert-danger mt-1">
@@ -169,5 +169,17 @@ button {
 
 form {
   text-align: left;
+}
+p{
+  color: white;
+}
+h2{
+  color: white
+}
+.label-form{
+color:rgb(60, 247, 14)
+}
+.pass{
+  color: rgb(60, 247, 14);
 }
 </style>

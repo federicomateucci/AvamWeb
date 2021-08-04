@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
-            <h1 class="titulo mb-5"></h1>
+            <h1 class="titulo mb-6 mr-4">Lista Precios Avamcar</h1>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
@@ -17,18 +17,25 @@
                     class="form-control form-control-lg busqueda"
                     placeholder="Busque Por Nombre de Auto ej : FIAT-600"
                   /> -->
-                
-                    <select v-model="selected">
-                      <option disabled value="">Selecciona Una Marca</option>
-                      <option v-for="marca in mydata" :key="marca">{{marca.marca}}</option>
-                    </select>
-                    <div v-if="selected !== ''" >
-
+                  <h2>Elegi una marca para comenzar</h2>
+                  <select v-model="selected">
+                    <option disabled value="">Selecciona Una Marca</option>
+                    <option v-for="marca in mydata" :key="marca">
+                      {{ marca.marca }}
+                    </option>
+                  </select>
+                  <br />
+                  <br />
+                  <div v-if="selected !== ''">
                     <select v-model="criterioBusqueda">
-                      <option  v-for="chevy in returnList(selected)" :key="chevy">{{chevy}}</option>
+                      <option
+                        v-for="chevy in returnList(selected)"
+                        :key="chevy"
+                      >
+                        {{ chevy }}
+                      </option>
                     </select>
-                    </div>
-                  
+                  </div>
                 </div>
                 <!-- <div class="col-12 col-md-3">
                   <button type="submit" class="btn btn-block btn-lg btn-info">
@@ -71,22 +78,30 @@
           </button>
         </div>
       </div> -->
-      
+
       <div v-if="isRequestLoading" class="d-flex justify-content-center">
         <div class="spinner-grow text-info mr-3" role="status">
           <span class="sr-only">Loading...</span>
         </div>
         <p class="lead">Cargando listado de Productos</p>
       </div>
-      <div v-else class="table-responsive">
+
+      <div v-else class="table-responsive" >
+        <!-- <b-table 
+        striped-hover 
+      
+        :fields="fields">
+        </b-table> -->
         <table class="table">
           <thead class="table-info">
             <tr>
               <th>ID Producto</th>
               <th>Marca</th>
               <th>Auto</th>
-              <th>Descripcion</th>
-              <th>Precio</th>
+              <th :class="sortedClass('descripcion')"
+          @click="sortBy('descripcion')">Descripcion</th>
+              <th :class="sortedClass('precio')"
+          @click="sortBy('precio')">Precio</th>
             </tr>
           </thead>
 
@@ -122,22 +137,36 @@ export default {
       urlPedidos: "http://localhost:3000/pedidos/",
       criterioBusqueda: "",
       isRequestLoading: false,
-      //productos: [],
       productosPedido: [],
       pedidoGenerado: false,
       selected: "",
       mydata:myJson,
-      
+      productosFil:[],
+           sort: {
+        key: '',
+        isAsc: false
+      }
     };
   },
   computed: {
     productosFiltrados() {
-      const productos = this.mostrarProducto;
-      return productos.filter((producto) => {
+       const productos = this.mostrarProducto;
+      const list = productos.slice();
+       if (!!this.sort.key) {
+        list.sort((a, b) => {
+          a = a[this.sort.key]
+          b = b[this.sort.key]
+
+          return (a === b ? 0 : a > b ? 1 : -1) * (this.sort.isAsc ? 1 : -1)
+        });
+      }
+      return list.filter((producto) => {
         const registroCompleto = `${producto.auto}`;
         return registroCompleto
           .toUpperCase()
-          .includes(this.criterioBusqueda.toUpperCase());
+          .includes(this.criterioBusqueda.toUpperCase())
+
+          
       });
     },
     listaPedidosLength() {
@@ -147,7 +176,10 @@ export default {
     mostrarProducto() {
       return this.$store.state.clientProducts;
     }
+   
+   
     
+  
   
     
   },
@@ -156,13 +188,20 @@ export default {
   
   },
   methods: {
-    returnList(selected){
+     sortedClass (key) {
+      return this.sort.key === key ? `sorted ${this.sort.isAsc ? 'asc' : 'desc' }` : '';
+    },
+    sortBy (key) {
+      this.sort.isAsc = this.sort.key === key ? !this.sort.isAsc : false;
+      this.sort.key = key;
+    },
+   
+     returnList(selected){
       const array = []
       for (let index = 0; index < myJson.length; index++) {
        let element = myJson[index];
         if(element.marca == selected){
           for (let j = 0; j < element.values.length; j++) {
-           console.log(element.values[j]);
             array.push(element.values[j])
             
           }
@@ -244,13 +283,16 @@ export default {
   overflow: auto;
   overflow-x: auto;
 }
+th {
+  
+}
 .table-responsive {
   width: 100%;
   max-height: 600px;
   margin-bottom: 15px;
   /* overflow-y: scroll;
     overflow-x: scroll; */
-  -ms-overflow-style: -ms-autohiding-scrollbar;
+  /* -ms-overflow-style: -ms-autohiding-scrollbar; */
   border: 1px solid #ddd;
   -webkit-overflow-scrolling: touch;
 }

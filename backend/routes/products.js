@@ -8,6 +8,9 @@ const excel = require("../util/excelToJson");
 // Get lista completa para mostrar a clientes, con el join para mostrar el nombre de auto
 router.get("/listaCompleta", async (req, res) => {
    const data = await productsController.getTrueTableProducts();
+   data.forEach(element => {
+      element.isActive = false;
+   });
    console.log(data);
    res.json(data);
 });
