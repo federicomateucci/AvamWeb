@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       {
          sequelize,
-         modelName: "produSql",
+         modelName: "produsql",
          timestamps: false, // quitamos created At, Updated At
       }
    );

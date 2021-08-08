@@ -19,6 +19,7 @@ router.get("/listaCompleta", async (req, res) => {
 router.get("/", async (req, res) => {
    try {
       const data = await productsController.getAll();
+      console.log(data);
       res.json(data);
    } catch (err) {
       res.status(500).send(`Error en getAll() MYSQL`);

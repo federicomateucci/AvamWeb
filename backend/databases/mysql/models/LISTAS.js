@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       {
          sequelize,
-         modelName: "listaAutos",
+         modelName: "listaautos",
          timestamps: false, // quitamos created At, Updated At
       }
    );

@@ -1,14 +1,14 @@
-const productoSql = require("../databases/mysql/models").produSql;
+const productoSql = require("../databases/mysql/models").produsql;
 const db = require("../databases/mysql/models/index");
 const querys = require("../databases/mysql/querys");
 
 // Query para productos por auto?
 async function getTrueTableProductsByCar(car) {
    const trueList = await db.dbAvamcar.query(
-      `select pruebanode.produsqls.productoid,pruebanode.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
-    precio,pruebanode.listamarcas.NOMBRE as auto ,pruebanode.listaautos.TITULO as marca FROM pruebanode.produsqls INNER JOIN pruebanode.listamarcas ON 
-    pruebanode.produsqls.auto = pruebanode.listamarcas.CODIGO INNER JOIN pruebanode.listaautos ON pruebanode.produsqls.lista = pruebanode.listaautos.LI 
-    WHERE pruebanode.listamarcas.NOMBRE like '${car}' `,
+      `select AVAMCARLISTA.produsqls.productoid,AVAMCARLISTA.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
+    precio,AVAMCARLISTA.listamarcas.NOMBRE as auto ,AVAMCARLISTA.listaautos.TITULO as marca FROM AVAMCARLISTA.produsqls INNER JOIN AVAMCARLISTA.listamarcas ON 
+    AVAMCARLISTA.produsqls.auto = AVAMCARLISTA.listamarcas.CODIGO INNER JOIN AVAMCARLISTA.listaautos ON AVAMCARLISTA.produsqls.lista = AVAMCARLISTA.listaautos.LI 
+     `,
       { type: db.dbAvamcar.QueryTypes.SELECT }
    );
    console.log(trueList);
@@ -18,10 +18,10 @@ async function getTrueTableProductsByCar(car) {
 // Query para productos por marca?
 async function getTrueTableProductsByBrand(brand) {
    const trueList = await db.dbAvamcar.query(
-      `select pruebanode.produsqls.productoid,pruebanode.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
-    precio,pruebanode.listamarcas.NOMBRE as auto ,pruebanode.listaautos.TITULO as marca FROM pruebanode.produsqls INNER JOIN pruebanode.listamarcas ON 
-    pruebanode.produsqls.auto = pruebanode.listamarcas.CODIGO INNER JOIN pruebanode.listaautos ON pruebanode.produsqls.lista = pruebanode.listaautos.LI 
-    WHERE pruebanode.listaautos.TITULO like '${brand}' `,
+      `select AVAMCARLISTA.produsqls.productoid,AVAMCARLISTA.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
+    precio,AVAMCARLISTA.listamarcas.NOMBRE as auto ,AVAMCARLISTA.listaautos.TITULO as marca FROM AVAMCARLISTA.produsqls INNER JOIN AVAMCARLISTA.listamarcas ON 
+    AVAMCARLISTA.produsqls.auto = AVAMCARLISTA.listamarcas.CODIGO INNER JOIN AVAMCARLISTA.listaautos ON AVAMCARLISTA.produsqls.lista = AVAMCARLISTA.listaautos.LI 
+    WHERE AVAMCARLISTA.listaautos.TITULO like '${brand}' `,
       { type: db.dbAvamcar.QueryTypes.SELECT }
    );
    console.log(trueList);
@@ -31,10 +31,10 @@ async function getTrueTableProductsByBrand(brand) {
 // Query para productos por auto y marca?
 async function getTrueTableProductsByCarAndBrand(car, brand) {
    const trueList = await db.dbAvamcar.query(
-      `select pruebanode.produsqls.productoid,pruebanode.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
-    precio,pruebanode.listamarcas.NOMBRE as auto ,pruebanode.listaautos.TITULO as marca FROM pruebanode.produsqls INNER JOIN pruebanode.listamarcas ON 
-    pruebanode.produsqls.auto = pruebanode.listamarcas.CODIGO INNER JOIN pruebanode.listaautos ON pruebanode.produsqls.lista = pruebanode.listaautos.LI 
-    WHERE pruebanode.listaautos.TITULO like '${brand}' and pruebanode.listamarcas.NOMBRE like '${car}'`,
+      `select AVAMCARLISTA.produsqls.productoid,AVAMCARLISTA.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
+    precio,AVAMCARLISTA.listamarcas.NOMBRE as auto ,AVAMCARLISTA.listaautos.TITULO as marca FROM AVAMCARLISTA.produsqls INNER JOIN AVAMCARLISTA.listamarcas ON 
+    AVAMCARLISTA.produsqls.auto = AVAMCARLISTA.listamarcas.CODIGO INNER JOIN AVAMCARLISTA.listaautos ON AVAMCARLISTA.produsqls.lista = AVAMCARLISTA.listaautos.LI 
+    WHERE AVAMCARLISTA.listaautos.TITULO like '${brand}' and AVAMCARLISTA.listamarcas.NOMBRE like '${car}'`,
       { type: db.dbAvamcar.QueryTypes.SELECT }
    );
    console.log(trueList);
@@ -44,9 +44,9 @@ async function getTrueTableProductsByCarAndBrand(car, brand) {
 // Query para productos por auto y precio maximo?
 async function getTrueTableProductsByCarAndPriceMaxOfArg(car, price) {
    const trueList = await db.dbAvamcar.query(
-      `select pruebanode.produsqls.productoid,pruebanode.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
-   precio,pruebanode.listamarcas.NOMBRE as auto ,pruebanode.listaautos.TITULO as marca FROM pruebanode.produsqls INNER JOIN pruebanode.listamarcas ON 
-   pruebanode.produsqls.auto = pruebanode.listamarcas.CODIGO INNER JOIN pruebanode.listaautos ON pruebanode.produsqls.lista = pruebanode.listaautos.LI 
+      `select AVAMCARLISTA.produsqls.productoid,AVAMCARLISTA.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
+   precio,AVAMCARLISTA.listamarcas.NOMBRE as auto ,AVAMCARLISTA.listaautos.TITULO as marca FROM AVAMCARLISTA.produsqls INNER JOIN AVAMCARLISTA.listamarcas ON 
+   AVAMCARLISTA.produsqls.auto = AVAMCARLISTA.listamarcas.CODIGO INNER JOIN AVAMCARLISTA.listaautos ON AVAMCARLISTA.produsqls.lista = AVAMCARLISTA.listaautos.LI 
    WHERE CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) <= '${price}' and listamarcas.NOMBRE like '${car}'`,
       { type: db.dbAvamcar.QueryTypes.SELECT }
    );
@@ -57,9 +57,9 @@ async function getTrueTableProductsByCarAndPriceMaxOfArg(car, price) {
 // Query para productos por marca y precio maximo?
 async function getTrueTableProductsByBrandAndPriceMaxOfArg(brand, price) {
    const trueList = await db.dbAvamcar.query(
-      `select pruebanode.produsqls.productoid,pruebanode.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
-   precio,pruebanode.listamarcas.NOMBRE as auto ,pruebanode.listaautos.TITULO as marca FROM pruebanode.produsqls INNER JOIN pruebanode.listamarcas ON 
-   pruebanode.produsqls.auto = pruebanode.listamarcas.CODIGO INNER JOIN pruebanode.listaautos ON pruebanode.produsqls.lista = pruebanode.listaautos.LI 
+      `select AVAMCARLISTA.produsqls.productoid,AVAMCARLISTA.produsqls.descripcion,CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) AS
+   precio,AVAMCARLISTA.listamarcas.NOMBRE as auto ,AVAMCARLISTA.listaautos.TITULO as marca FROM AVAMCARLISTA.produsqls INNER JOIN AVAMCARLISTA.listamarcas ON 
+   AVAMCARLISTA.produsqls.auto = AVAMCARLISTA.listamarcas.CODIGO INNER JOIN AVAMCARLISTA.listaautos ON AVAMCARLISTA.produsqls.lista = AVAMCARLISTA.listaautos.LI 
    WHERE CONVERT(produsqls.venta*1.22,DECIMAL(9,2)) <= '${price}' and listaautos.TITULO like '${brand}'`,
       { type: db.dbAvamcar.QueryTypes.SELECT }
    );
